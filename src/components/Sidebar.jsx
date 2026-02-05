@@ -23,10 +23,6 @@ import {
 import { useTheme } from "@mui/material/styles";
 
 import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
-import RestaurantRoundedIcon from "@mui/icons-material/RestaurantRounded";
-import FitnessCenterRoundedIcon from "@mui/icons-material/FitnessCenterRounded";
-import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
-import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import BoltRoundedIcon from "@mui/icons-material/BoltRounded";
 
