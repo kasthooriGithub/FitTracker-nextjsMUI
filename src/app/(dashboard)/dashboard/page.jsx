@@ -31,9 +31,7 @@ import { useProfile } from "@/hooks/useProfile";
 import { useDailyLogs } from "@/hooks/useDailyLogs";
 import { useNutrition } from "@/hooks/useNutrition";
 import { useWorkouts } from "@/hooks/useWorkouts";
-import EditRoundedIcon from "@mui/icons-material/EditRounded";
-import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
-import FitnessCenterRoundedIcon from "@mui/icons-material/FitnessCenterRounded";
+
 
 
 export default function DashboardPage() { 
@@ -57,9 +55,23 @@ export default function DashboardPage() {
     setOpenBMI(false);
   };
 
+  const [water, setWater] = useState(0);
+  const [steps, setSteps] = useState(0);
+
+  useEffect(() => {
+    setWater(todayLog?.water_ml || 0);
+    setSteps(todayLog?.steps || 0);
+  }, [todayLog?.water_ml, todayLog?.steps]);
+
+  const stepsBurned = useMemo(() => Math.round(steps * 0.04), [steps]);
+  const burned = useMemo(() =>
+     (todaysTotalCalories || 0) + stepsBurned,
+     [todaysTotalCalories, stepsBurned]
+    
+    );
+
   const goal = profile?.daily_calories_goal || 2000;
   const eaten = nutritionTotals?.calories || 0;
-  const burned = todaysTotalCalories || 0;
   const net = eaten - burned;
 
   const progress = useMemo(() => {
@@ -68,13 +80,6 @@ export default function DashboardPage() {
     return Math.max(0, Math.min(100, pct));
   }, [eaten, goal]);
   
-  const [water, setWater] = useState(0);
-  const [steps, setSteps] = useState(0);
-
-  useEffect(() => {
-    setWater(todayLog?.water_ml || 0);
-    setSteps(todayLog?.steps || 0);
-  }, [todayLog?.water_ml, todayLog?.steps]);
 
   const syncWater = (val) => {
     setWater(val);
@@ -188,9 +193,9 @@ export default function DashboardPage() {
         display: "grid",
         gap: 2,
         gridTemplateColumns: {
-          xs: "1fr",            // mobile: 1 per row
-          sm: "1fr 1fr",        // tablet: 2 per row
-          md: "repeat(3, 1fr)", // desktop: 3 per row
+          xs: "1fr",            
+          sm: "1fr 1fr",        
+          md: "repeat(3, 1fr)", 
         },
         alignItems: "stretch",
       }}
@@ -247,7 +252,7 @@ export default function DashboardPage() {
 
       
 
-      {/* 5. DAILY SNAPSHOT (Compact) */}
+      {/* 5. DAILY SNAPSHOT  */}
 <Card sx={{ ...cardStyle, mt: 2 }}>
   <CardContent sx={{ p: 2 }}>
     <Typography sx={{ fontWeight: 900, fontSize: 14, mb: 2 }}>
@@ -259,9 +264,9 @@ export default function DashboardPage() {
         display: "grid",
         gap: 2,
         gridTemplateColumns: {
-          xs: "1fr",            // mobile: 1 by 1
-          sm: "1fr 1fr",        // tablet: 2
-          md: "repeat(3, 1fr)", // desktop: 3 equal columns
+          xs: "1fr",            
+          sm: "1fr 1fr",        
+          md: "repeat(3, 1fr)", 
         },
         alignItems: "stretch",
       }}
@@ -300,7 +305,7 @@ export default function DashboardPage() {
     display: "flex",
     gap: 2,
     mt: 1,
-    flexWrap: { xs: "wrap", md: "nowrap" }, // mobile = stack, desktop = side by side
+    flexWrap: { xs: "wrap", md: "nowrap" }, 
   }}
 >
   {/* Water Intake */}
@@ -608,71 +613,6 @@ function ProgressRing({ title, value, goal, unit = "", color = "#2563eb" }) {
 }
 
 
-// function WorkoutRow({ workout, onEdit, onDelete }) {
-//   const title = workout?.workout_name || "Workout";
-//   const type = workout?.workout_type || "Activity";
-//   const calories = workout?.calories_burned || 0;
-//   const minutes = workout?.duration_minutes || 0;
-
-//   return (
-//     <Box
-//       sx={{
-//         p: 1.6,
-//         borderRadius: 3,
-//         bgcolor: "#f8fafc",
-//         border: "1px solid rgba(15,23,42,0.06)",
-//         display: "flex",
-//         alignItems: "center",
-//         justifyContent: "space-between",
-//         gap: 1.5,
-//       }}
-//     >
-//       <Box sx={{ display: "flex", alignItems: "center", gap: 1.2, minWidth: 0 }}>
-//         <Box
-//           sx={{
-//             width: 38,
-//             height: 38,
-//             borderRadius: 2,
-//             bgcolor: "rgba(37,99,235,0.10)",
-//             display: "grid",
-//             placeItems: "center",
-//             flexShrink: 0,
-//           }}
-//         >
-//           <FitnessCenterRoundedIcon sx={{ fontSize: 18, color: "#2563eb" }} />
-//         </Box>
-
-//         <Box sx={{ minWidth: 0 }}>
-//           <Typography sx={{ fontWeight: 900, color: "#0f172a" }} noWrap>
-//             {title}
-//           </Typography>
-
-//           <Typography sx={{ fontSize: 12, color: "text.secondary" }} noWrap>
-//             {type} • {minutes} min • {calories} kcal
-//           </Typography>
-//         </Box>
-//       </Box>
-
-//       <Box sx={{ display: "flex", gap: 0.75, flexShrink: 0 }}>
-//         <IconButton
-//           size="small"
-//           onClick={onEdit}
-//           sx={{ border: "1px solid #e2e8f0", borderRadius: 2 }}
-//         >
-//           <EditRoundedIcon fontSize="small" />
-//         </IconButton>
-
-//         <IconButton
-//           size="small"
-//           onClick={onDelete}
-//           sx={{ border: "1px solid #e2e8f0", borderRadius: 2 }}
-//         >
-//           <DeleteRoundedIcon fontSize="small" />
-//         </IconButton>
-//       </Box>
-//     </Box>
-//   );
-// }
 
 function EmptyActivity({ onAdd }) {
   return (

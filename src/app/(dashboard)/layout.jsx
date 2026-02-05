@@ -8,7 +8,7 @@ import Sidebar from "@/components/Sidebar";
 import { useAuth } from "@/contexts/AuthContext";
 import { SIDEBAR_WIDTH } from "@/components/Sidebar";
 
-const SIDEBAR_W = SIDEBAR_WIDTH;// sidebar width (match your sidebar)
+const SIDEBAR_W = SIDEBAR_WIDTH;// sidebar width 
 
 export default function DashboardLayout({ children }) {
   const { user, authLoading } = useAuth();
@@ -23,7 +23,7 @@ export default function DashboardLayout({ children }) {
 
   return (
     <Box sx={{ minHeight: "100vh", bgcolor: "background.default" }}>
-      {/* Sidebar (fixed/permanent) */}
+      {/* Sidebar-fiixed */}
       <Sidebar />
 
       {/* Content area shifted to the right on desktop */}

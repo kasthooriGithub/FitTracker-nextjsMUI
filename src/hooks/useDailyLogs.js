@@ -14,10 +14,7 @@ import {
 } from "firebase/firestore";
 import { useAuth } from "@/contexts/AuthContext";
 
-/**
- * Next.js compatible version of useDailyLogs
- * Same logic as your old React project
- */
+
 export function useDailyLogs() {
   const { user } = useAuth();
   const [todayLog, setTodayLog] = useState(null);
@@ -69,7 +66,8 @@ export function useDailyLogs() {
         const logRef = doc(db, "daily_logs", todayLog.id);
         await updateDoc(logRef, { [field]: value });
       } else {
-        // unique doc per user per day
+
+      
         const logId = `${user.uid}_${today}`;
 
         await setDoc(doc(db, "daily_logs", logId), {

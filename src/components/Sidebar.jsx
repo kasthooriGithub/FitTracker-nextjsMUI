@@ -38,9 +38,7 @@ export const SIDEBAR_WIDTH = 264;
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: <DashboardRoundedIcon /> },
-  { href: "/nutrition", label: "Nutrition", icon: <RestaurantRoundedIcon /> },
-  { href: "/workouts", label: "Workouts", icon: <FitnessCenterRoundedIcon /> },
-  
+
 ];
 
 export default function Navigation() {

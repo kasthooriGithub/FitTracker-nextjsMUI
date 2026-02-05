@@ -37,7 +37,7 @@ export function AuthProvider({ children }) {
     try {
       const cred = await createUserWithEmailAndPassword(auth, email, password);
 
-      // ✅ create profile doc (basic)
+      //  create profile doc 
       await setDoc(doc(db, "profiles", cred.user.uid), {
         full_name: fullName,
         email,

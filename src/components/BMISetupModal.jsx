@@ -170,12 +170,15 @@ export default function BMISetupModal({ open, onClose, onSave, profile }) {
       </DialogContent>
 
       <DialogActions sx={{ p: 2 }}>
+        <Button variant="outlined" onClick={onClose} sx={{ borderRadius: 999, fontWeight: 900, px: 3 }}>
+          Cancel
+        </Button>
         <Button
           variant="contained"
           onClick={handleSave}
           disabled={saving}
           startIcon={!saving ? <FitnessCenterRoundedIcon /> : null}
-          sx={{ borderRadius: 999, fontWeight: 900, px: 3 }}
+          sx={{ borderRadius: 999, fontWeight: 900, px: 3, backgroundColor: "primary.main", color: "white" }}
         >
           {saving ? (
             <>

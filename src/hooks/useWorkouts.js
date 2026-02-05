@@ -15,10 +15,7 @@ import {
 } from "firebase/firestore";
 import { useAuth } from "@/contexts/AuthContext";
 
-/**
- * Next.js compatible version of useWorkouts
- * Adapted from your old React project
- */
+
 export function useWorkouts() {
   const { user } = useAuth();
   const [workouts, setWorkouts] = useState([]);
@@ -87,7 +84,7 @@ export function useWorkouts() {
     }
   };
 
-  // 🔹 Today's summary (same logic as old app)
+  // Today's summary 
   const today = new Date().toISOString().split("T")[0];
 
   const todaysWorkouts = workouts.filter(

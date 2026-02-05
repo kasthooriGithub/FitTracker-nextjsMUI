@@ -5,10 +5,7 @@ import { db } from "@/lib/firebase";
 import { doc, onSnapshot, updateDoc, setDoc, getDoc } from "firebase/firestore";
 import { useAuth } from "@/contexts/AuthContext";
 
-/**
- * Next.js compatible useProfile hook
- * Adapted from your old React + Bootstrap project
- */
+
 export function useProfile() {
   const { user } = useAuth();
   const [profile, setProfile] = useState(null);

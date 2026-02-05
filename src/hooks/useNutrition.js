@@ -46,7 +46,8 @@ export function useNutrition(
           ...d.data(),
         }));
 
-        // client-side sort (same as old app)
+        // client-side 
+        
         entryData.sort((a, b) => {
           const tA = a.created_at?.toMillis?.() || 0;
           const tB = b.created_at?.toMillis?.() || 0;
@@ -88,7 +89,7 @@ export function useNutrition(
     }
   };
 
-  // 🔹 Grouping & totals (used by dashboard)
+  
   const meals = {
     Breakfast: entries.filter((e) => e.meal_type === "Breakfast"),
     Lunch: entries.filter((e) => e.meal_type === "Lunch"),
